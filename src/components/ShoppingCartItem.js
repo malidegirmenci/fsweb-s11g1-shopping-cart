@@ -11,7 +11,7 @@ const Item = (props) => {
       <ScCartItemDetails>
         <h2>{title}</h2>
         <p>$ {price}</p>
-        <button onClick={()=>removeItem(props)}>Remove from cart</button>
+        <button onClick={()=>removeItem(props.idx)}>Remove from cart</button>
       </ScCartItemDetails>
     </ScCartItem>
   );
