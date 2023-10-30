@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import { data } from "./data";
 
@@ -12,29 +12,50 @@ import { CartContext } from "./contexts/CartContext";
 function App() {
   const [products, setProducts] = useState(data);
   const [cart, setCart] = useState([]);
+  const LSKey = "ItemsInCart";
+  useEffect(() => {
+    setCart(getDataFromLS());
+  },[])
 
+  function writeFavsToLocalStorage(state) {
+    localStorage.setItem(LSKey, JSON.stringify(state));
+  }
+  function readFavsFromLocalStorage() {
+    return JSON.parse(localStorage.getItem(LSKey));
+  }
+  function getDataFromLS() {
+    if(readFavsFromLocalStorage()){
+      return readFavsFromLocalStorage();
+    }else {
+      return cart;
+    }
+  }
   const addItem = (item) => {
-    // verilen itemi sepete ekleyin
-    setCart([...cart,item])
+    setCart([...cart, item])
+    writeFavsToLocalStorage([...cart, item])
   };
+
+  
   const removeItem = (item) => {
     const remainingItems = cart.filter((i) => i.id !== item.id)
     setCart(remainingItems);
+    writeFavsToLocalStorage(remainingItems)
   }
+
   return (
     <ProductContext.Provider value={{ products, addItem, removeItem }}>
       <div className="App">
-        <CartContext.Provider value={{cart}}>
+        <CartContext.Provider value={{ cart }}>
           <Navigation />
         </CartContext.Provider>
         {/* Routelar */}
         <main className="content">
           <Route exact path="/">
-            <Products/>
+            <Products />
           </Route>
-          <CartContext.Provider value={{cart}}>
+          <CartContext.Provider value={{ cart }}>
             <Route path="/cart">
-              <ShoppingCart/>
+              <ShoppingCart />
             </Route>
           </CartContext.Provider>
         </main>
