@@ -14,10 +14,10 @@ const ShoppingCart = () => {
       }, 0)
       .toFixed(2);
   };
-
   return (
     <div>
       {cart.map((item) => (
+        
         <Item key={item.id} {...item} />
       ))}
 
