@@ -5,13 +5,10 @@ import Navigation from "./components/Navigation";
 import Products from "./components/Products";
 import ShoppingCart from "./components/ShoppingCart";
 
-import { CartProvider } from "./contexts/CartContext";
-import { ProductProvider } from "./contexts/ProductContext";
+
 function App() {
   return (
-    <ProductProvider >
       <div className="App">
-        <CartProvider >
           <Navigation />
           {/* Routelar */}
           <main className="content">
@@ -22,9 +19,7 @@ function App() {
               <ShoppingCart />
             </Route>
           </main>
-        </CartProvider>
       </div>
-    </ProductProvider>
   );
 }
 
