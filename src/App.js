@@ -15,10 +15,14 @@ function App() {
 
   const addItem = (item) => {
     // verilen itemi sepete ekleyin
+    setCart([...cart,item])
   };
-
+  const removeItem = (item) => {
+    const remainingItems = cart.filter((i) => i.id !== item.id)
+    setCart(remainingItems);
+  }
   return (
-    <ProductContext.Provider value={{ products, addItem }}>
+    <ProductContext.Provider value={{ products, addItem, removeItem }}>
       <div className="App">
         <CartContext.Provider value={{cart}}>
           <Navigation />
@@ -26,7 +30,7 @@ function App() {
         {/* Routelar */}
         <main className="content">
           <Route exact path="/">
-            <Products products={products} addItem={addItem} />
+            <Products/>
           </Route>
           <CartContext.Provider value={{cart}}>
             <Route path="/cart">
