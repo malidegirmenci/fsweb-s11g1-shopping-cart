@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 export const CartContext = createContext();
 
-export const CartProvider = ({ children }) => {
+export default function CartProvider({ children }) {
     const LSKey = "ItemsInCart";
     const [cart, setCart] = useState([]);
 
