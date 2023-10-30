@@ -10,11 +10,11 @@ Bu talimatları dikkatlice okuyun. Bu projeye başlamadan önce tam olarak ne be
 
 ### Görev 1: Proje Kurulumu
 
-- [ ] Forklayın.
-- [ ] Klonlayın
-- [ ] Ana dizine gidin
-- [ ] `npm install`
-- [ ] `npm start`
+- [X] Forklayın.
+- [X] Klonlayın
+- [X] Ana dizine gidin
+- [X] `npm install`
+- [X] `npm start`
 
 ### Görev 2: Gereksinimler
 
