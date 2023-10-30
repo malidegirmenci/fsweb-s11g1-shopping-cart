@@ -28,8 +28,8 @@ export const CartProvider = ({ children }) => {
     };
 
 
-    const removeItem = (item) => {
-        const remainingItems = cart.filter((i) => i.id !== item.id)
+    const removeItem = (idx) => {
+        const remainingItems = cart.filter((item) => item.idx !== idx)
         setCart(remainingItems);
         writeFavsToLocalStorage(remainingItems)
     }
